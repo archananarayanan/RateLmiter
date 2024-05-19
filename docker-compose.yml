@@ -1,14 +1,64 @@
 
 version: '3.8'
 services:
-  cache:
-    image: redis:6.2-alpine
-    restart: always
-    ports:
-      - '6379:6379'
-    command: redis-server --save 20 1 --loglevel warning --requirepass testRedis
-    volumes: 
-      - cache:/data
-volumes:
-  cache:
-    driver: local
+  redis-1:
+        image: redis
+        command: redis-server /usr/local/etc/redis/conf/redis.conf
+        volumes:
+            - ${PWD}/redis/node-1/:/usr/local/etc/redis
+        ports:
+            - "6372:6372"
+        network_mode: "host" 
+  redis-2:
+        image: redis
+        command: redis-server /usr/local/etc/redis/conf/redis.conf
+        volumes:
+            - ${PWD}/redis/node-2:/usr/local/etc/redis
+        ports:
+            - "6373:6373"
+        network_mode: "host" 
+  redis-3:
+        image: redis
+        command: redis-server /usr/local/etc/redis/conf/redis.conf
+        volumes:
+            - ${PWD}/redis/node-3:/usr/local/etc/redis
+        ports:
+            - "6374:6374"
+        network_mode: "host" 
+  redis-4:
+        image: redis
+        command: redis-server /usr/local/etc/redis/conf/redis.conf
+        volumes:
+            - ${PWD}/redis/node-4/:/usr/local/etc/redis
+        ports:
+            - "6374:6374"
+        network_mode: "host" 
+  redis-5:
+        image: redis
+        command: redis-server /usr/local/etc/redis/conf/redis.conf
+        volumes:
+            - ${PWD}/redis/node-5:/usr/local/etc/redis
+        ports:
+            - "6376:6376"
+        network_mode: "host" 
+  redis-6:
+        image: redis
+        command: redis-server /usr/local/etc/redis/conf/redis.conf
+        volumes:
+            - ${PWD}/redis/node-6:/usr/local/etc/redis
+        ports:
+            - "6377:6377"
+        network_mode: "host" 
+  redis-cluster-configure:
+        image: redis
+        command: bash -c "chmod +x /usr/local/etc/redis/redis-cluster-create.sh && /usr/local/etc/redis/redis-cluster-create.sh"
+        network_mode: "host" 
+        depends_on:
+        - redis-1
+        - redis-2
+        - redis-3
+        - redis-4
+        - redis-5
+        - redis-6
+        volumes:
+        - ${PWD}/redis:/usr/local/etc/redis

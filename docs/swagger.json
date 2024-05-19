@@ -1,0 +1,30 @@
+{
+    "schemes": [
+        "http"
+    ],
+    "swagger": "2.0",
+    "info": {
+        "description": "Testing Rate Limiter.",
+        "title": "RateLimiter APIs",
+        "termsOfService": "http://swagger.io/terms/",
+        "contact": {},
+        "version": "1.0"
+    },
+    "basePath": "/api/v1",
+    "paths": {
+        "/criticalRequestLimit": {
+            "get": {
+                "description": "Test Critical RateLimiter",
+                "summary": "RateLimiter Critical",
+                "responses": {}
+            }
+        },
+        "/requestLimit": {
+            "get": {
+                "description": "Test General RateLimiter",
+                "summary": "RateLimiter",
+                "responses": {}
+            }
+        }
+    }
+}

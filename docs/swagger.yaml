@@ -1,0 +1,21 @@
+basePath: /api/v1
+info:
+  contact: {}
+  description: Testing Rate Limiter.
+  termsOfService: http://swagger.io/terms/
+  title: RateLimiter APIs
+  version: "1.0"
+paths:
+  /criticalRequestLimit:
+    get:
+      description: Test Critical RateLimiter
+      responses: {}
+      summary: RateLimiter Critical
+  /requestLimit:
+    get:
+      description: Test General RateLimiter
+      responses: {}
+      summary: RateLimiter
+schemes:
+- http
+swagger: "2.0"

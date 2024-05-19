@@ -1,7 +1,14 @@
 
 REDIS_HOST: "localhost:6379"
-REDIS_PASS: "testRedis"
+# REDIS_PASS: "testRedis"
 REDIS_DB: 0
-REFILL_RATE: 15
-REFILL_TOKEN: 4
-BUCKET_SIZE: 4
+NONCRITICAL: {
+      REFILL_RATE: 15,
+      REFILL_TOKEN: 4,
+      BUCKET_SIZE: 4
+    }
+CRITICAL : {
+      REFILL_RATE: 30,
+      REFILL_TOKEN: 8,
+      BUCKET_SIZE: 10
+    }
